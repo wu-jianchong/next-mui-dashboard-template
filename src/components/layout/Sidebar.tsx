@@ -24,12 +24,11 @@ const menuItems = [
 ];
 
 const drawerWidth = 240;
-const headerHeight = 80;
 
 /**
  * サイドバーメニュー
- * - 顶部与内容区对齐（top: 80px）
- * - 无边框、无圆角、无阴影
+ * - ヘッダーから20px間隔
+ * - アクティブ項目：深蓝背景
  */
 export default function Sidebar() {
   const pathname = usePathname();
@@ -41,9 +40,9 @@ export default function Sidebar() {
         flexShrink: 0,
         bgcolor: "white",
         position: "fixed",
-        top: headerHeight + 20, // 与 Header 底部对齐
+        top: 100,
         left: 0,
-        height: `calc(100vh - ${headerHeight}px)`,
+        height: "calc(100vh - 100px)",
         overflowY: "auto",
         py: 1,
         px: 2,

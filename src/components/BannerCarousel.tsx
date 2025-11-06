@@ -6,41 +6,34 @@ import { Box, IconButton, Typography } from "@mui/material";
 import ArrowLeftIcon from "@mui/icons-material/ArrowLeft";
 import ArrowRightIcon from "@mui/icons-material/ArrowRight";
 
-/**
- * バナーデータ（publicフォルダの画像）
- */
 const banners = [
   {
     id: 1,
     image: "/kv_top_01.jpg",
-    title: "ここにタイトル１が入ります。...",
-    description: "テキストテキスト...\nテキストテキスト...",
+    title: "システムメンテナンスのお知らせ",
+    description:
+      "2025年10月1日 0:00～6:00 まで\nシステムメンテナンスのため、一時的にご利用いただけません。",
   },
   {
     id: 2,
     image: "/kv_top_02.jpg",
-    title: "ここにタイトル２が入ります。...",
-    description: "テキストテキスト...\nテキストテキスト...",
+    title: "新機能リリース",
+    description:
+      "電子交付書類のダウンロードが可能になりました。\nマイページからご確認ください。",
   },
   {
     id: 3,
     image: "/kv_top_03.jpg",
-    title: "ここにタイトル３が入ります。...",
-    description: "テキストテキスト...\nテキストテキスト...",
+    title: "株主総会招集通知の電子化について",
+    description:
+      "2025年より電子交付を開始いたします。\n詳細はこちらをご確認ください。",
   },
 ];
 
-/**
- * バナーカルーセル（左図右文）
- * - PC：左右分割
- * - モバイル：上下排列
- * - 自動再生 + 手動切替
- */
 export default function BannerCarousel() {
   const [index, setIndex] = useState(0);
   const maxIndex = banners.length - 1;
 
-  // 自動再生
   useEffect(() => {
     const timer = setInterval(() => {
       setIndex((prev) => (prev === maxIndex ? 0 : prev + 1));
@@ -74,14 +67,12 @@ export default function BannerCarousel() {
         overflow: "hidden",
       }}
     >
-      {/* PC：左右分割 */}
       <Box
         sx={{
           display: { xs: "none", md: "flex" },
           height: 300,
         }}
       >
-        {/* 左：画像 */}
         <Box
           sx={{
             width: "50%",
@@ -103,7 +94,6 @@ export default function BannerCarousel() {
           />
         </Box>
 
-        {/* 右：テキスト */}
         <Box
           sx={{
             width: "50%",
@@ -136,7 +126,6 @@ export default function BannerCarousel() {
         </Box>
       </Box>
 
-      {/* モバイル：上下排列 */}
       <Box
         sx={{
           display: { xs: "block", md: "none" },
@@ -163,7 +152,6 @@ export default function BannerCarousel() {
         </Typography>
       </Box>
 
-      {/* 共通：左右ボタン */}
       <IconButton
         onClick={handlePrev}
         sx={{
@@ -192,7 +180,6 @@ export default function BannerCarousel() {
         <ArrowRightIcon />
       </IconButton>
 
-      {/* ドットインジケーター */}
       <Box
         sx={{
           position: "absolute",
