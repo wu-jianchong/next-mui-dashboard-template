@@ -1,3 +1,4 @@
+// src/components/layout/Sidebar.tsx
 "use client";
 
 import Link from "next/link";
@@ -71,12 +72,14 @@ export default function Sidebar() {
       <Divider />
       <List>
         <ListItem disablePadding>
-          <ListItemButton component="form" action="/api/logout" method="post">
-            <ListItemIcon>
-              <Logout />
-            </ListItemIcon>
-            <ListItemText primary="ログアウト" />
-          </ListItemButton>
+          <form action="/api/logout" method="post" style={{ width: "100%" }}>
+            <ListItemButton type="submit">
+              <ListItemIcon>
+                <Logout />
+              </ListItemIcon>
+              <ListItemText primary="ログアウト" />
+            </ListItemButton>
+          </form>
         </ListItem>
       </List>
     </Drawer>
