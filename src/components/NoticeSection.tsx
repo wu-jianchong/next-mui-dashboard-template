@@ -35,6 +35,11 @@ export default function NoticeSection() {
             py: 1,
             borderBottom: "1px solid",
             borderColor: "divider",
+            cursor: "pointer",
+            transition: "background-color 0.2s",
+            "&:hover": {
+              bgcolor: "#e3f2fd",
+            },
           }}
         >
           <Typography

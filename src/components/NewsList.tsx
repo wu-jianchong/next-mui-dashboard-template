@@ -166,10 +166,12 @@ export default function NewsList() {
                 py: 1.5,
                 borderBottom: "1px solid",
                 borderColor: "divider",
-                bgcolor: item.new ? "transparent" : "#f8f9fa",
+                bgcolor: item.new ? "white" : "#f8f9fa",
                 borderRadius: 1,
+                cursor: "pointer",
+                transition: "background-color 0.2s",
                 "&:hover": {
-                  bgcolor: item.new ? "transparent" : "#f0f7ff",
+                  bgcolor: "#e3f2fd",
                 },
               }}
             >
