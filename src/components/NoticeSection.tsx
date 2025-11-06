@@ -61,20 +61,23 @@ export default function NoticeSection() {
               sx={{ minWidth: 40, display: "flex", justifyContent: "center" }}
             >
               {n.important ? (
-                <Chip
-                  label="重要"
-                  size="small"
+                <Box
                   sx={{
                     bgcolor: "error.main",
                     color: "white",
                     fontWeight: 700,
                     fontSize: 12,
-                    height: 20,
+                    px: 1,
+                    py: 0.5,
+                    // 关键：移除圆角
+                    borderRadius: 0,
                   }}
-                />
+                >
+                  重要
+                </Box>
               ) : (
                 <Box sx={{ width: 40 }} />
-              )}
+              )}{" "}
             </Box>
 
             {/* タイトル */}

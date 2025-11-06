@@ -7,6 +7,7 @@ import Header from "@/components/layout/Header";
 import Sidebar from "@/components/layout/Sidebar";
 
 const drawerWidth = 240;
+const headerHeight = 80; // Header 固定高度
 
 export default function ClientLayout({
   children,
@@ -21,11 +22,11 @@ export default function ClientLayout({
         <Header />
 
         {/* 主内容区：从 Header 下开始 */}
-        <Box sx={{ display: "flex", flex: 1, mt: "64px" }}>
+        <Box sx={{ display: "flex", flex: 1, mt: `${headerHeight}px` }}>
           {/* 固定 Sidebar */}
           <Sidebar />
 
-          {/* 内容区：与 Sidebar 对齐 */}
+          {/* 内容区：与 Sidebar 顶部对齐 */}
           <Box
             component="main"
             sx={{

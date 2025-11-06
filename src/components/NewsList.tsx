@@ -210,7 +210,7 @@ export default function NewsList() {
                       borderRadius: 4,
                       height: 20,
                       fontSize: 11,
-                      border: "1px solid #003087",
+                      border: "none",
                       boxShadow: "none",
                     }}
                   />
