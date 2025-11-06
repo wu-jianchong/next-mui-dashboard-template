@@ -8,12 +8,6 @@ import Sidebar from "@/components/layout/Sidebar";
 
 const drawerWidth = 240;
 
-/**
- * メインレイアウト
- * - ヘッダー固定
- * - 左：サイドバー固定
- * - 右：コンテンツエリア（スクロール可）
- */
 export default function ClientLayout({
   children,
 }: {
@@ -22,18 +16,16 @@ export default function ClientLayout({
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
-
-      {/* 全体コンテナ */}
       <Box sx={{ display: "flex", flexDirection: "column", height: "100vh" }}>
-        {/* 固定ヘッダー */}
+        {/* 固定 Header */}
         <Header />
 
-        {/* 左右分割エリア */}
+        {/* 主内容区：从 Header 下开始 */}
         <Box sx={{ display: "flex", flex: 1, mt: "64px" }}>
-          {/* 左：固定メニュー */}
+          {/* 固定 Sidebar */}
           <Sidebar />
 
-          {/* 右：コンテンツ（スクロール可） */}
+          {/* 内容区：与 Sidebar 对齐 */}
           <Box
             component="main"
             sx={{
@@ -42,7 +34,7 @@ export default function ClientLayout({
               ml: `${drawerWidth}px`,
               width: `calc(100% - ${drawerWidth}px)`,
               overflowY: "auto",
-              bgcolor: "#f5f5f5",
+              bgcolor: "#f8f9fa",
             }}
           >
             {children}
