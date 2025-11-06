@@ -25,7 +25,7 @@ export default function Home() {
         variant="contained"
         size="large"
       >
-        ダッシュボードへ
+        トップへ
       </Button>
     </Container>
   );

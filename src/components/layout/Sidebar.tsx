@@ -23,7 +23,7 @@ import {
 } from "@mui/icons-material";
 
 const menuItems = [
-  { text: "ダッシュボード", icon: <Dashboard />, href: "/dashboard" },
+  { text: "トップ", icon: <Dashboard />, href: "/dashboard" },
   { text: "Web広場", icon: <Forum />, href: "/community" },
   { text: "セミナー", icon: <School />, href: "/seminars" },
   { text: "事務手続き", icon: <AdminPanelSettings />, href: "/admin" },
