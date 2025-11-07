@@ -142,18 +142,16 @@ export default function NewsList() {
         </Typography>
 
         <Box
+          component="img"
+          src="/images/newinfo.png"
+          alt="新着情報"
           sx={{
-            width: 40,
-            height: 4,
-            bgcolor: "#003087",
-            borderRadius: 2,
-            mt: 0.5,
-            ml: 0,
-            boxShadow: "0 1px 3px rgba(0,48,135,0.2)",
+            height: 8,
+            width: "auto",
+            objectFit: "contain",
           }}
         />
       </Box>
-
       {/* ニュースリスト */}
       <Box>
         {news.map((item, i) => {
