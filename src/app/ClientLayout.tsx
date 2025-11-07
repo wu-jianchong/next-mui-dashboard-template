@@ -1,41 +1,68 @@
 // src/app/(features)/ClientLayout.tsx
 "use client";
 
-import { ThemeProvider, CssBaseline, Box } from "@mui/material";
+import { useState } from "react"; // ここを追加！
+import { ThemeProvider, CssBaseline, Box, Drawer } from "@mui/material";
 import { theme } from "@/theme/theme";
 import Header from "@/components/layout/Header";
 import Sidebar from "@/components/layout/Sidebar";
 
 const drawerWidth = 240;
-const headerHeight = 80; // Header 固定高度
 
+/**
+ * メインレイアウト
+ * - ヘッダー固定
+ * - 左：サイドバー（PC固定 / モバイル抽屉）
+ * - 右：コンテンツエリア（可滚动）
+ */
 export default function ClientLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
+  const [mobileOpen, setMobileOpen] = useState(false); // 现在可以正常使用！
+
+  const handleDrawerToggle = () => {
+    setMobileOpen(!mobileOpen);
+  };
+
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
       <Box sx={{ display: "flex", flexDirection: "column", height: "100vh" }}>
-        {/* 固定 Header */}
-        <Header />
+        {/* 固定ヘッダー */}
+        <Header onMenuClick={handleDrawerToggle} />
 
-        {/* 主内容区：从 Header 下开始 */}
-        <Box sx={{ display: "flex", flex: 1, mt: `${headerHeight}px` }}>
-          {/* 固定 Sidebar */}
-          <Sidebar />
+        <Box sx={{ display: "flex", flex: 1, mt: "64px" }}>
+          {/* PC：固定サイドバー */}
+          <Box sx={{ display: { xs: "none", md: "block" } }}>
+            <Sidebar />
+          </Box>
 
-          {/* 内容区：与 Sidebar 顶部对齐 */}
+          {/* モバイル：抽屉サイドバー */}
+          <Drawer
+            variant="temporary"
+            open={mobileOpen}
+            onClose={handleDrawerToggle}
+            ModalProps={{ keepMounted: true }}
+            sx={{
+              display: { xs: "block", md: "none" },
+              "& .MuiDrawer-paper": { width: drawerWidth },
+            }}
+          >
+            <Sidebar />
+          </Drawer>
+
+          {/* 右：コンテンツエリア */}
           <Box
             component="main"
             sx={{
               flexGrow: 1,
               p: 3,
-              ml: `${drawerWidth}px`,
-              width: `calc(100% - ${drawerWidth}px)`,
+              ml: { md: `${drawerWidth}px` },
+              width: { md: `calc(100% - ${drawerWidth}px)` },
               overflowY: "auto",
-              bgcolor: "#f8f9fa",
+              bgcolor: "#f5f5f5",
             }}
           >
             {children}
