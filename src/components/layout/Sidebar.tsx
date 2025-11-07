@@ -97,6 +97,7 @@ export default function Sidebar() {
                       },
                       pl: 2,
                       py: 1,
+                      clipPath: "polygon(0 0, 100% 0, 95% 100%, 0 100%)",
                     }}
                   >
                     <ListItemText
@@ -112,7 +113,7 @@ export default function Sidebar() {
                         color="error"
                         sx={{
                           ml: 1,
-                          "& .MuiBadge-badge": { right: -3, top: 3 },
+                          "& .MuiBadge-badge": { right: 3, top: 3 },
                         }}
                       />
                     )}

@@ -9,24 +9,10 @@ import ArrowRightIcon from "@mui/icons-material/ArrowRight";
 const banners = [
   {
     id: 1,
-    image: "/kv_top_01.jpg",
+    image: "/images/sample.png",
     title: "システムメンテナンスのお知らせ",
     description:
       "2025年10月1日 0:00～6:00 まで\nシステムメンテナンスのため、一時的にご利用いただけません。",
-  },
-  {
-    id: 2,
-    image: "/kv_top_02.jpg",
-    title: "新機能リリース",
-    description:
-      "電子交付書類のダウンロードが可能になりました。\nマイページからご確認ください。",
-  },
-  {
-    id: 3,
-    image: "/kv_top_03.jpg",
-    title: "株主総会招集通知の電子化について",
-    description:
-      "2025年より電子交付を開始いたします。\n詳細はこちらをご確認ください。",
   },
 ];
 

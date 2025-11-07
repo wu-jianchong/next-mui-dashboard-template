@@ -1,7 +1,7 @@
 // src/components/layout/Header.tsx
 "use client";
 
-import { AppBar, Toolbar, Typography, Box, IconButton } from "@mui/material";
+import { AppBar, Toolbar, Box, IconButton } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 
 /**
@@ -23,35 +23,17 @@ export default function Header({ onMenuClick }: { onMenuClick?: () => void }) {
       }}
     >
       <Toolbar sx={{ height: "100%", p: 2, justifyContent: "space-between" }}>
-        {/* 左：ロゴ + サイト名 */}
-        <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
+        {/* 左：ロゴ图片 */}
+        <Box sx={{ display: "flex", alignItems: "center" }}>
           <Box
+            component="img"
+            src="/images/mizuho-logo.png"
+            alt="Mizuho Logo"
             sx={{
-              width: 40,
-              height: 40,
-              bgcolor: "#003087",
-              borderRadius: 1,
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              color: "white",
-              fontWeight: "bold",
-              fontSize: 18,
+              height: 72,
+              width: "auto",
             }}
-          >
-            M
-          </Box>
-          <Box sx={{ minWidth: 160 }}>
-            <Typography
-              variant="h6"
-              sx={{ fontWeight: 700, fontSize: "1.4rem" }}
-            >
-              MIZUHO
-            </Typography>
-            <Typography variant="caption" sx={{ fontSize: 11 }}>
-              みずほ信託銀行
-            </Typography>
-          </Box>
+          />
         </Box>
 
         {/* 中：サブタイトル（PCのみ） */}
