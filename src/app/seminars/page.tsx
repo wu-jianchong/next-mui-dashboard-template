@@ -15,7 +15,6 @@ import {
   TextField,
   Typography,
   Pagination,
-  Chip,
 } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
 import CalendarTodayIcon from "@mui/icons-material/CalendarToday";
@@ -24,7 +23,6 @@ import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 import Link from "next/link";
 import { useState } from "react";
 
-// MUI X DatePicker
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
@@ -156,28 +154,28 @@ export default function SeminarsPage() {
       <Box sx={{ bgcolor: "#f5f5f5", minHeight: "100vh" }}>
         <Box sx={{ maxWidth: 1000, mx: "auto", pt: 3, px: 2 }}>
           {/* タイトル：左对齐 + 下划线左对齐 */}
-          <Box sx={{ mb: 2 }}>
-            <Typography
-              variant="h6"
-              sx={{
-                fontWeight: 700,
-                textAlign: "left",
-              }}
-            >
-              セミナー一覧
-            </Typography>
-
+          <Typography
+            variant="h5"
+            sx={{
+              fontWeight: 700,
+              mb: 3,
+              textAlign: "left",
+              position: "relative",
+              pl: 2,
+            }}
+          >
+            セミナー一覧
             <Box
-              component="img"
-              src="/images/newinfo.png"
-              alt="新着情報"
               sx={{
-                height: 8,
-                width: "auto",
-                objectFit: "contain",
+                position: "absolute",
+                left: 16,
+                bottom: -8,
+                width: 40,
+                height: 3,
+                bgcolor: "#d32f2f",
               }}
             />
-          </Box>
+          </Typography>
 
           {/* 検索エリア */}
           <Paper sx={{ p: 2, mb: 3, borderRadius: 2 }}>
@@ -363,58 +361,46 @@ export default function SeminarsPage() {
                     <Typography sx={{ fontSize: 14, fontWeight: 600 }}>
                       {seminar.date}
                     </Typography>
-                    <Typography sx={{ fontSize: 14, color: "#9e9e9e" }}>
-                      |
-                    </Typography>
 
-                    {/* 申込受付中（斜角） */}
+                    {/* 申込受付中：淡蓝色底，蓝色字 */}
+                    {seminar.applyStatus === "申込受付中" ? (
+                      <SlantedTag
+                        color={{
+                          bgcolor: "#e3f2fd", // 淡蓝色
+                          color: "#1976d2", // 蓝色
+                        }}
+                      >
+                        {seminar.applyStatus}
+                      </SlantedTag>
+                    ) : (
+                      // 其他状态：淡灰色底，灰色字
+                      <SlantedTag
+                        color={{
+                          bgcolor: "#f5f5f5", // 淡灰色
+                          color: "#757575", // 灰色
+                        }}
+                      >
+                        {seminar.applyStatus}
+                      </SlantedTag>
+                    )}
+
+                    {/* セミナー / ウェビナー：淡灰色底，灰色字 */}
                     <SlantedTag
                       color={{
-                        bgcolor:
-                          seminar.applyStatus === "申込受付中"
-                            ? "#e8f5e9"
-                            : seminar.applyStatus === "オンデマンド"
-                            ? "#e3f2fd"
-                            : seminar.applyStatus === "アンケート"
-                            ? "#fff3e0"
-                            : "#ffebee",
-                        color:
-                          seminar.applyStatus === "申込受付中"
-                            ? "#2e7d32"
-                            : seminar.applyStatus === "オンデマンド"
-                            ? "#1565c0"
-                            : seminar.applyStatus === "アンケート"
-                            ? "#ef6c00"
-                            : "#c2185b",
-                      }}
-                    >
-                      {seminar.applyStatus}
-                    </SlantedTag>
-
-                    <Typography sx={{ fontSize: 14, color: "#9e9e9e" }}>
-                      |
-                    </Typography>
-
-                    {/* セミナー / ウェビナー（斜角） */}
-                    <SlantedTag
-                      color={{
-                        bgcolor: "#e0e0e0",
-                        color: "#424242",
+                        bgcolor: "#f5f5f5",
+                        color: "#757575",
                       }}
                     >
                       {seminar.type}
                     </SlantedTag>
 
-                    {/* 締切間近（斜角，红色） */}
+                    {/* 締切間近：淡红色底，红色字 */}
                     {seminar.isClosingSoon && (
                       <>
-                        <Typography sx={{ fontSize: 14, color: "#9e9e9e" }}>
-                          |
-                        </Typography>
                         <SlantedTag
                           color={{
-                            bgcolor: "#d32f2f",
-                            color: "white",
+                            bgcolor: "#ffebee",
+                            color: "#d32f2f",
                           }}
                         >
                           締切間近
