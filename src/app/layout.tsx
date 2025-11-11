@@ -7,7 +7,7 @@ const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "みずほ信託銀行 証券代行お客さまサイト",
-  description: "Next.js + MUI による企業向け管理画面",
+  description: "証券代行お客さまサイト",
 };
 
 /**

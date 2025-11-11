@@ -1,7 +1,6 @@
-// src/app/(features)/ClientLayout.tsx
 "use client";
 
-import { useState } from "react"; // ここを追加！
+import { useState } from "react";
 import { ThemeProvider, CssBaseline, Box, Drawer } from "@mui/material";
 import { theme } from "@/theme/theme";
 import Header from "@/components/layout/Header";
@@ -20,7 +19,7 @@ export default function ClientLayout({
 }: {
   children: React.ReactNode;
 }) {
-  const [mobileOpen, setMobileOpen] = useState(false); // 现在可以正常使用！
+  const [mobileOpen, setMobileOpen] = useState(false);
 
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
