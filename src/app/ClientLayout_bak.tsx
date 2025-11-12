@@ -1,4 +1,3 @@
-// components/ClientLayout.tsx
 "use client";
 
 import { useState } from "react";
@@ -10,10 +9,10 @@ import SidebarNavigationSection from "@/components/layout/SidebarNavigationSecti
 const drawerWidth = 240;
 
 /**
- * 汎用メインレイアウト
- * - ヘッダー：NavigationSection
+ * メインレイアウト
+ * - ヘッダー固定
  * - 左：サイドバー（PC固定 / モバイル抽屉）
- * - 右：children（任意コンテンツ）
+ * - 右：コンテンツエリア（可滚动）
  */
 export default function ClientLayout({
   children,
@@ -29,22 +28,13 @@ export default function ClientLayout({
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
-      <Box
-        sx={{
-          display: "flex",
-          flexDirection: "column",
-          minWidth: 1366,
-          height: "100vh",
-        }}
-      >
-        {/* ヘッダー */}
+      <Box sx={{ display: "flex", flexDirection: "column", height: "100vh" }}>
+        {/* 固定ヘッダー */}
         <NavigationSection onMenuClick={handleDrawerToggle} />
 
-        <Box sx={{ display: "flex", flex: 1 }}>
+        <Box sx={{ display: "flex", flex: 1, mt: "64px" }}>
           {/* PC：固定サイドバー */}
-          <Box
-            sx={{ display: { xs: "none", md: "block" }, width: drawerWidth }}
-          >
+          <Box sx={{ display: { xs: "none", md: "block" } }}>
             <SidebarNavigationSection />
           </Box>
 
@@ -62,17 +52,16 @@ export default function ClientLayout({
             <SidebarNavigationSection />
           </Drawer>
 
-          {/* 右：コンテンツエリア（children） */}
+          {/* 右：コンテンツエリア */}
           <Box
             component="main"
             sx={{
               flexGrow: 1,
               p: 3,
+              ml: { md: `${drawerWidth}px` },
+              width: { md: `calc(100% - ${drawerWidth}px)` },
               overflowY: "auto",
               bgcolor: "#f5f5f5",
-              display: "flex",
-              flexDirection: "column",
-              gap: 3,
             }}
           >
             {children}
