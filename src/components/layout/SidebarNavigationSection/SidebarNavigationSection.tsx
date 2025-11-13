@@ -17,7 +17,7 @@ import React from "react";
 const navigationItems = [
   { label: "トップ", href: "/dashboard" },
   { label: "Web広場", href: "/community" },
-  { label: "セミナー", href: "/seminars" },
+  { label: "セミナー", href: "/seminar" },
   { label: "事務手続き", href: "/admin" },
   { label: "受信BOX", href: "/inbox", badge: 2 },
 ];

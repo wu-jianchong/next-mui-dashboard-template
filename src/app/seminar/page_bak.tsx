@@ -138,7 +138,7 @@ const SlantedTag = ({
   );
 };
 
-export default function SeminarsPage() {
+export default function SeminarPage() {
   const [page, setPage] = useState(1);
   const [startDate, setStartDate] = useState<Dayjs | null>(null);
   const [endDate, setEndDate] = useState<Dayjs | null>(null);

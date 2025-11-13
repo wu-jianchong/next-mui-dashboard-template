@@ -5,7 +5,8 @@ import BookmarkIcon from "@mui/icons-material/Bookmark";
 import BookmarkBorderIcon from "@mui/icons-material/BookmarkBorder";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import { Box, Button, Stack, Typography } from "@mui/material";
-import { MainCategoryTag } from "@/components/common/MainCategoryTag";
+import { MainCategoryTag } from "./common/MainCategoryTag";
+import { SubCategoryTag } from "./common/SubCategoryTag";
 
 const newsData = [
   {
@@ -17,12 +18,7 @@ const newsData = [
       textColor: "#329664",
       width: 64,
     },
-    subCategory: {
-      label: "証券代行部/大阪証券代行部",
-      bgColor: "#F5F5F5",
-      textColor: "#000000",
-      width: 200,
-    },
+    subCategory: { label: "証券代行部/大阪証券代行部", width: 165 },
     title: "提案資料①",
     isNew: true,
     isBookmarked: false,
@@ -37,12 +33,7 @@ const newsData = [
       textColor: "#BF9306",
       width: 88,
     },
-    subCategory: {
-      label: "マニュアル・連絡先一覧等",
-      bgColor: "#F5F5F5",
-      textColor: "#000000",
-      width: 200,
-    },
+    subCategory: { label: "マニュアル・連絡先一覧等", width: 160 },
     title: "○○についての連絡",
     isNew: true,
     isBookmarked: false,
@@ -57,12 +48,7 @@ const newsData = [
       textColor: "#5096C8",
       width: 64,
     },
-    subCategory: {
-      label: "ニュース(シリーズ)",
-      bgColor: "#F5F5F5",
-      textColor: "#000000",
-      width: 200,
-    },
+    subCategory: { label: "ニュース(シリーズ)", width: 120 },
     title: "証券代行フラッシュ",
     isNew: false,
     isBookmarked: true,
@@ -77,12 +63,7 @@ const newsData = [
       textColor: "#5096C8",
       width: 64,
     },
-    subCategory: {
-      label: "ニュース(シリーズ)",
-      bgColor: "#F5F5F5",
-      textColor: "#000000",
-      width: 200,
-    },
+    subCategory: { label: "ニュース(シリーズ)", width: 120 },
     title: "有価証券報告書の早期開示について",
     isNew: false,
     isBookmarked: false,
@@ -97,12 +78,7 @@ const newsData = [
       textColor: "#825AAA",
       width: 100,
     },
-    subCategory: {
-      label: "サブカテゴリ",
-      bgColor: "#F5F5F5",
-      textColor: "#000000",
-      width: 200,
-    },
+    subCategory: { label: "サブカテゴリ", width: 88 },
     title:
       "ここにタイトルが入ります。ここにタイトルが入ります。ここにタイトルが入ります。",
     isNew: false,
@@ -194,10 +170,8 @@ export const NewsFeedSection = (): JSX.Element => {
                       textColor={item.mainCategory.textColor}
                       width={item.mainCategory.width}
                     />
-                    <MainCategoryTag
+                    <SubCategoryTag
                       label={item.subCategory.label}
-                      bgColor={item.subCategory.bgColor}
-                      textColor={item.subCategory.textColor}
                       width={item.subCategory.width}
                     />
                   </Stack>
