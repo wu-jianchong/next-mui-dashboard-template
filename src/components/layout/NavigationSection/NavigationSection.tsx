@@ -1,14 +1,9 @@
-// components/NavigationSection.tsx
+// components/layout/NavigationSection/NavigationSection.tsx
 "use client";
 
 import { Box, Stack, Typography, IconButton } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
-import React from "react";
 
-/**
- * ナビゲーションセクション（Logo + 站点名 + ハンバーガーメニュー）
- * @param onMenuClick - モバイルメニュー打开回调
- */
 interface NavigationSectionProps {
   onMenuClick?: () => void;
 }
@@ -33,98 +28,44 @@ export const NavigationSection = ({
         backgroundColor: "transparent",
       }}
     >
-      {/* 左侧：Logo + 站点名 */}
+      {/* 左侧 */}
       <Stack direction="row" spacing={3} alignItems="center">
         <Box
           component="img"
           src="/images/logo_tb_header.png"
-          alt="Logo tb header"
-          sx={{
-            height: 27,
-            width: "auto",
-          }}
+          alt="Logo"
+          sx={{ height: 27 }}
         />
-        <Typography
-          sx={{
-            fontFamily: "'Noto Sans JP', sans-serif",
-            fontSize: 14,
-            lineHeight: "21px",
-            color: "text.secondary",
-          }}
-        >
+        <Typography sx={{ fontSize: 14, color: "text.secondary" }}>
           証券代行お客様サイト
         </Typography>
       </Stack>
 
-      {/* 右侧：用户信息 + ハンバーガーメニュー */}
+      {/* 右侧 */}
       <Stack spacing={1} alignItems="flex-end">
         <Stack direction="row" spacing={2}>
-          <Typography
-            sx={{
-              fontFamily: "'Noto Sans JP', sans-serif",
-              fontSize: 14,
-              lineHeight: "21px",
-              color: "text.primary",
-            }}
-          >
-            {companyName}
-          </Typography>
-          <Typography
-            sx={{
-              fontFamily: "'Noto Sans JP', sans-serif",
-              fontSize: 14,
-              lineHeight: "21px",
-              color: "text.primary",
-            }}
-          >
-            {userName}
-          </Typography>
+          <Typography sx={{ fontSize: 14 }}>{companyName}</Typography>
+          <Typography sx={{ fontSize: 14 }}>{userName}</Typography>
         </Stack>
 
         <Stack direction="row" spacing={2} alignItems="center">
-          <Typography
-            sx={{
-              fontFamily: "'Noto Sans JP', sans-serif",
-              fontSize: 12,
-              lineHeight: "18px",
-              color: "text.secondary",
-            }}
-          >
+          <Typography sx={{ fontSize: 12, color: "text.secondary" }}>
             前回ログイン日時
           </Typography>
           <Stack direction="row" spacing={0.5}>
-            <Typography
-              sx={{
-                fontFamily: "'Noto Sans JP', sans-serif",
-                fontSize: 12,
-                lineHeight: "18px",
-                color: "text.secondary",
-              }}
-            >
+            <Typography sx={{ fontSize: 12, color: "text.secondary" }}>
               {lastLoginDate}
             </Typography>
-            <Typography
-              sx={{
-                fontFamily: "'Noto Sans JP', sans-serif",
-                fontSize: 12,
-                lineHeight: "18px",
-                color: "text.secondary",
-              }}
-            >
+            <Typography sx={{ fontSize: 12, color: "text.secondary" }}>
               {lastLoginTime}
             </Typography>
           </Stack>
 
-          {/* ハンバーガーメニュー：モバイルのみ */}
+          {/* 汉堡菜单：只在移动端显示 */}
           {onMenuClick && (
             <IconButton
               onClick={onMenuClick}
-              sx={{
-                display: { xs: "flex", md: "none" },
-                color: "#000",
-                p: 0.5,
-                ml: 1,
-              }}
+              sx={{ color: "#000", p: 0.5, ml: 1 }}
             >
               <MenuIcon fontSize="small" />
             </IconButton>

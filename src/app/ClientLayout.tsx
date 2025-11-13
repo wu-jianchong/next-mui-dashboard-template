@@ -2,28 +2,31 @@
 "use client";
 
 import { useState } from "react";
-import { ThemeProvider, CssBaseline, Box, Drawer } from "@mui/material";
+import {
+  ThemeProvider,
+  CssBaseline,
+  Box,
+  Drawer,
+  useMediaQuery,
+  useTheme,
+} from "@mui/material";
 import { theme } from "@/theme/theme";
 import NavigationSection from "@/components/layout/NavigationSection/NavigationSection";
 import SidebarNavigationSection from "@/components/layout/SidebarNavigationSection/SidebarNavigationSection";
 
 const drawerWidth = 240;
 
-/**
- * 汎用メインレイアウト
- * - ヘッダー：NavigationSection
- * - 左：サイドバー（PC固定 / モバイル抽屉）
- * - 右：children（任意コンテンツ）
- */
 export default function ClientLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down("md")); // < 900px
   const [mobileOpen, setMobileOpen] = useState(false);
 
   const handleDrawerToggle = () => {
-    setMobileOpen(!mobileOpen);
+    setMobileOpen((prev) => !prev);
   };
 
   return (
@@ -33,17 +36,24 @@ export default function ClientLayout({
         sx={{
           display: "flex",
           flexDirection: "column",
-          minWidth: 1366,
           height: "100vh",
+          // 移除 minWidth: 1366 → 不再强制宽度
+          // minWidth: 1366,
         }}
       >
         {/* ヘッダー */}
-        <NavigationSection onMenuClick={handleDrawerToggle} />
+        <NavigationSection
+          onMenuClick={isMobile ? handleDrawerToggle : undefined}
+        />
 
-        <Box sx={{ display: "flex", flex: 1 }}>
+        <Box sx={{ display: "flex", flex: 1, overflow: "hidden" }}>
           {/* PC：固定サイドバー */}
           <Box
-            sx={{ display: { xs: "none", md: "block" }, width: drawerWidth }}
+            sx={{
+              display: { xs: "none", md: "block" },
+              width: drawerWidth,
+              flexShrink: 0,
+            }}
           >
             <SidebarNavigationSection />
           </Box>
@@ -62,7 +72,7 @@ export default function ClientLayout({
             <SidebarNavigationSection />
           </Drawer>
 
-          {/* 右：コンテンツエリア（children） */}
+          {/* 主内容：占满剩余空间 */}
           <Box
             component="main"
             sx={{

@@ -5,21 +5,18 @@ interface NewsHeaderProps {
   date: string;
   isImportant?: boolean;
   title: string;
+  titleColor?: string;
 }
 
 export const NewsHeader = ({
   date,
   isImportant = false,
   title,
+  titleColor = "#E1462D",
 }: NewsHeaderProps) => {
   return (
-    <Stack
-      direction="row"
-      spacing={3}
-      alignItems="center"
-      sx={{ width: 607, height: 24 }}
-    >
-      {/* 日期 */}
+    <Stack direction="row" spacing={3} alignItems="center">
+      {/* Date */}
       <Typography
         sx={{
           fontFamily: "'Noto Sans JP', sans-serif",
@@ -33,7 +30,7 @@ export const NewsHeader = ({
         {date}
       </Typography>
 
-      {/* 重要标签 */}
+      {/* Important Badge */}
       {isImportant && (
         <Typography
           sx={{
@@ -54,14 +51,14 @@ export const NewsHeader = ({
         </Typography>
       )}
 
-      {/* 标题 */}
+      {/* Title */}
       <Typography
         sx={{
           fontFamily: "'Noto Sans JP', sans-serif",
           fontSize: 16,
           fontWeight: 600,
           lineHeight: "150%",
-          color: "#E1462D",
+          color: titleColor,
           flex: 1,
         }}
       >
