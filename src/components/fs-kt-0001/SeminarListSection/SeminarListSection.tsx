@@ -3,8 +3,8 @@
 
 import React, { useState } from "react";
 import { Box, Stack } from "@mui/material";
-import Carousel from "./carousel/Carousel";
-import CarouselArrow from "./carousel_arrow/CarouselArrow";
+import Carousel from "./Carousel/Carousel";
+import CarouselArrow from "./CarouselArrow/CarouselArrow";
 
 const seminarData = [
   {

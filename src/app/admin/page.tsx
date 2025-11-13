@@ -1,4 +1,4 @@
-// src/app/jimmu-tetsuzuki/page.tsx
+// src/app/admin/page.tsx
 "use client";
 
 import {
@@ -256,15 +256,6 @@ export default function JimmuTetsuzukiPage() {
         </Box>
       </Box>
       <Divider sx={{ my: 6 }} />
-      {/* FAQ */}
-      <Box>
-        <Typography variant="h5" gutterBottom sx={{ fontWeight: 600, mb: 3 }}>
-          よくある質問
-        </Typography>
-        <Typography variant="body2" color="text.secondary">
-          現在、よくある質問は準備中です。
-        </Typography>
-      </Box>
     </Container>
   );
 }

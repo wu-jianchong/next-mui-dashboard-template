@@ -1,4 +1,4 @@
-// src/app/(features)/dashboard/page.tsx
+// src/app/dashboard/page.tsx
 "use client";
 
 import { Box } from "@mui/material";
