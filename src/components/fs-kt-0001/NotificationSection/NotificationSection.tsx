@@ -1,19 +1,20 @@
+// src/components/NotificationSection.tsx
+"use client";
+
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
-import { Box, Chip, List, ListItem, Stack, Typography } from "@mui/material";
-import React from "react";
+import { Box, List, ListItem, Typography, Stack } from "@mui/material";
+import { NewsHeader } from "@/components/common/NewsHeader";
 
 const notificationData = [
   {
     date: "2025/07/17",
     badge: "重要",
     title: "ここにタイトルが入ります。ここにタイトルが入ります。",
-    isImportant: true,
   },
   {
     date: "2025/07/17",
     badge: "",
     title: "お知らせタイトル３",
-    isImportant: false,
   },
 ];
 
@@ -27,11 +28,12 @@ export const NotificationSection = (): JSX.Element => {
       }}
     >
       <Stack direction="row" spacing={5} alignItems="flex-start">
+        {/* 左侧标题 */}
         <Typography
           variant="h6"
           sx={{
-            fontWeight: "bold",
-            fontSize: "16px",
+            fontWeight: 700,
+            fontSize: 16,
             lineHeight: "24px",
             color: "#000000",
             whiteSpace: "nowrap",
@@ -40,11 +42,11 @@ export const NotificationSection = (): JSX.Element => {
           重要なお知らせ
         </Typography>
 
+        {/* 右侧列表 */}
         <List sx={{ width: "100%", padding: 0 }}>
-          {notificationData.map((notification, index) => (
+          {notificationData.map((item, index) => (
             <ListItem
               key={index}
-              onClick={() => {}}
               sx={{
                 display: "flex",
                 alignItems: "center",
@@ -57,58 +59,18 @@ export const NotificationSection = (): JSX.Element => {
                 },
               }}
             >
-              <Stack direction="row" spacing={3} alignItems="center">
-                <Typography
-                  variant="body2"
-                  sx={{
-                    fontSize: "14px",
-                    lineHeight: "21px",
-                    color: "#757575",
-                    whiteSpace: "nowrap",
-                  }}
-                >
-                  {notification.date}
-                </Typography>
+              {/* 左侧：日期 + 标签 + 标题 */}
+              <NewsHeader
+                date={item.date}
+                isImportant={!!item.badge}
+                title={item.title}
+              />
 
-                <Box
-                  sx={{
-                    visibility: notification.badge ? "visible" : "hidden",
-                  }}
-                >
-                  <Chip
-                    label={notification.badge || "重要"}
-                    sx={{
-                      backgroundColor: "#D32F2F",
-                      color: "#FFFFFF",
-                      fontWeight: "bold",
-                      fontSize: "12px",
-                      height: "auto",
-                      padding: "2px 16px",
-                      "& .MuiChip-label": {
-                        padding: 0,
-                      },
-                    }}
-                  />
-                </Box>
-
-                <Typography
-                  variant="body1"
-                  sx={{
-                    fontWeight: "bold",
-                    fontSize: "16px",
-                    lineHeight: "24px",
-                    color: notification.isImportant ? "#D32F2F" : "#000000",
-                    whiteSpace: "nowrap",
-                  }}
-                >
-                  {notification.title}
-                </Typography>
-              </Stack>
-
+              {/* 右侧箭头 */}
               <ChevronRightIcon
                 sx={{
                   color: "#757575",
-                  fontSize: "26px",
+                  fontSize: 26,
                 }}
               />
             </ListItem>

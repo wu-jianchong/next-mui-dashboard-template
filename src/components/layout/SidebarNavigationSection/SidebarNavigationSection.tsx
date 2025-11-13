@@ -1,4 +1,4 @@
-// components/SidebarNavigationSection.tsx
+// src/components/SidebarNavigationSection.tsx
 "use client";
 
 import Link from "next/link";
@@ -10,7 +10,6 @@ import {
   ListItemButton,
   ListItemText,
   Badge,
-  Divider,
 } from "@mui/material";
 import React from "react";
 
@@ -27,13 +26,6 @@ const bottomItems = [
   { label: "ログアウト", href: "/api/logout", isLogout: true },
 ];
 
-/**
- * サイドバーナビゲーション（Sidebar.tsx 完全再現）
- * - ルート高亮
- * - クリック跳转
- * - 未読角标
- * - 选中斜切效果
- */
 export default function SidebarNavigationSection() {
   const pathname = usePathname();
 
@@ -54,60 +46,50 @@ export default function SidebarNavigationSection() {
           const isActive = pathname === item.href;
 
           return (
-            <Box key={item.label}>
-              <ListItem disablePadding sx={{ mb: 0.5 }}>
-                <ListItemButton
-                  component={Link}
-                  href={item.href}
-                  sx={{
-                    borderRadius: 0,
-                    bgcolor: isActive ? "#003087" : "transparent",
-                    color: isActive ? "white" : "inherit",
-                    "&:hover": {
-                      bgcolor: isActive ? "#00205b" : "rgba(0, 0, 0, 0.04)",
-                    },
-                    pl: 2,
-                    py: 1,
-                    // 选中斜切效果（右下角切掉）
-                    clipPath: isActive
-                      ? "polygon(0 0, 100% 0, 95% 100%, 0 100%)"
-                      : "none",
+            <ListItem key={item.label} disablePadding sx={{ mb: 0.5 }}>
+              <ListItemButton
+                component={Link}
+                href={item.href}
+                sx={{
+                  borderRadius: 0,
+                  bgcolor: isActive ? "#003087" : "transparent",
+                  color: isActive ? "white" : "inherit",
+                  "&:hover": {
+                    bgcolor: isActive ? "#00205b" : "rgba(0, 0, 0, 0.04)",
+                  },
+                  pl: 2,
+                  py: 1,
+                  clipPath: isActive
+                    ? "polygon(0 0, 100% 0, 95% 100%, 0 100%)"
+                    : "none",
+                }}
+              >
+                <ListItemText
+                  primary={item.label}
+                  primaryTypographyProps={{
+                    fontSize: 14,
+                    fontWeight: isActive ? 600 : 500,
                   }}
-                >
-                  <ListItemText
-                    primary={item.label}
-                    primaryTypographyProps={{
-                      fontSize: 14,
-                      fontWeight: isActive ? 600 : 500,
+                />
+                {item.badge !== undefined && (
+                  <Badge
+                    badgeContent={item.badge}
+                    color="error"
+                    sx={{
+                      ml: 1,
+                      "& .MuiBadge-badge": { right: 3, top: 3 },
                     }}
                   />
-                  {item.badge !== undefined && (
-                    <Badge
-                      badgeContent={item.badge}
-                      color="error"
-                      sx={{
-                        ml: 1,
-                        "& .MuiBadge-badge": { right: 3, top: 3 },
-                      }}
-                    />
-                  )}
-                </ListItemButton>
-              </ListItem>
-
-              {item.label === "受信BOX" && (
-                <Divider
-                  sx={{ my: 1, mx: 2, bgcolor: "rgba(0, 0, 0, 0.12)" }}
-                />
-              )}
-            </Box>
+                )}
+              </ListItemButton>
+            </ListItem>
           );
         })}
       </List>
 
-      {/* 底部功能区 */}
+      {/* 底部功能区（保留顶部边框） */}
       <Box sx={{ px: 2, py: 3, borderTop: "1px solid #e0e0e0" }}>
         {bottomItems.map((item) => {
-          const isActive = pathname === item.href;
           const isLogout = item.isLogout;
 
           return (

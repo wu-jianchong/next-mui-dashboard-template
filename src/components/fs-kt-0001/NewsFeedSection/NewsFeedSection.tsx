@@ -6,6 +6,7 @@ import BookmarkBorderIcon from "@mui/icons-material/BookmarkBorder";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import { Box, Button, Stack, Typography } from "@mui/material";
 import { MainCategoryTag } from "@/components/common/MainCategoryTag";
+import { TitleUnderline } from "@/components/common/TitleUnderline";
 
 const newsData = [
   {
@@ -135,10 +136,7 @@ export const NewsFeedSection = (): JSX.Element => {
           >
             新着情報
           </Typography>
-          <Stack direction="row" spacing={0.5} sx={{ marginTop: "8px" }}>
-            <Box sx={{ width: 24, height: 4, bgcolor: "#1976D2" }} />
-            <Box sx={{ width: 14, height: 4, bgcolor: "#FF9800" }} />
-          </Stack>
+          <TitleUnderline />{" "}
         </Box>
 
         {/* News List */}
