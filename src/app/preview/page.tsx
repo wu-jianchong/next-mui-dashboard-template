@@ -4,7 +4,7 @@
 import React from "react";
 import { CssBaseline, ThemeProvider, createTheme } from "@mui/material";
 import NotificationSection from "@/components/fs-kt-0001/NotificationSection/NotificationSection";
-import SeminarListSection from "@/components/fs-kt-0001/SeminarListSection/SeminarListSection";
+import CarouselListSection from "@/components/fs-kt-0001/CarouselListSection/CarouselListSection";
 import NewsFeedSection from "@/components/fs-kt-0001/NewsFeedSection/NewsFeedSection";
 
 // テーマ
@@ -37,7 +37,7 @@ export default function TestPage() {
             <NotificationSection />
           </main>
           <main style={{ padding: 40 }}>
-            <SeminarListSection />
+            <CarouselListSection />
           </main>
           <main style={{ padding: 40 }}>
             <NewsFeedSection />

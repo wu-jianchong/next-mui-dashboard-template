@@ -1,4 +1,4 @@
-// components/SeminarListSection.tsx
+// components/CarouselListSection.tsx
 "use client";
 
 import React, { useState } from "react";
@@ -6,7 +6,7 @@ import { Box, Stack } from "@mui/material";
 import Carousel from "./Carousel/Carousel";
 import CarouselArrow from "./CarouselArrow/CarouselArrow";
 
-const seminarData = [
+const carouselData = [
   {
     id: 1,
     image: "/images/carousel.png",
@@ -49,15 +49,15 @@ const seminarData = [
   },
 ];
 
-export default function SeminarListSection() {
+export default function CarouselListSection() {
   const [activeIndex, setActiveIndex] = useState(1);
 
   const handlePrevious = () => {
-    setActiveIndex((prev) => (prev > 0 ? prev - 1 : seminarData.length - 1));
+    setActiveIndex((prev) => (prev > 0 ? prev - 1 : carouselData.length - 1));
   };
 
   const handleNext = () => {
-    setActiveIndex((prev) => (prev < seminarData.length - 1 ? prev + 1 : 0));
+    setActiveIndex((prev) => (prev < carouselData.length - 1 ? prev + 1 : 0));
   };
 
   const handleDotClick = (index: number) => {
@@ -69,7 +69,7 @@ export default function SeminarListSection() {
       {/* カルーセル + 矢印の親コンテナ（相対位置） */}
       <Box sx={{ position: "relative", width: "100%" }}>
         {/* カルーセル本体 */}
-        <Carousel seminars={seminarData} activeIndex={activeIndex} />
+        <Carousel seminars={carouselData} activeIndex={activeIndex} />
 
         {/* 左右矢印：相対位置で Carousel に紐づけ */}
         <CarouselArrow direction="left" onClick={handlePrevious} />
@@ -78,7 +78,7 @@ export default function SeminarListSection() {
 
       {/* ページネーション（矢印の外） */}
       <Stack direction="row" spacing={0} alignItems="center">
-        {seminarData.map((_, index) => (
+        {carouselData.map((_, index) => (
           <Box
             key={index}
             onClick={() => handleDotClick(index)}
