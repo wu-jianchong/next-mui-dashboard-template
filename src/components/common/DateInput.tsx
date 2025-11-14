@@ -361,6 +361,7 @@ export const DateInput = ({
                 },
               },
             },
+            field: { openPickerButtonPosition: "start" },
           }}
         />
       </Stack>
