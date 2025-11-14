@@ -57,9 +57,7 @@ export const NavigationSection = ({
                 fontWeight: 600,
                 color: "primary.main",
               }}
-            >
-              MIZUHO
-            </Typography>
+            ></Typography>
             <Typography
               sx={{
                 fontSize: 12,
@@ -110,9 +108,7 @@ export const NavigationSection = ({
                     color: "primary.main",
                     lineHeight: 1.2,
                   }}
-                >
-                  MIZUHO
-                </Typography>
+                ></Typography>
                 <Typography
                   sx={{
                     fontSize: 11,
