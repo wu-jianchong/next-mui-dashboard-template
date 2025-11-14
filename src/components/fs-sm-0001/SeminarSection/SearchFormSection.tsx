@@ -11,7 +11,7 @@ import {
   SelectChangeEvent,
 } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
-import { DateInput } from "@/components/common/DateInput";
+import DateInput from "@/components/common/DateInput";
 import { SelectInput } from "@/components/common/SelectInput";
 import { Dayjs } from "dayjs";
 
