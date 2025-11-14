@@ -24,7 +24,7 @@ const navigationItems = [
 
 const bottomItems = [
   { label: "パスワード変更", href: "/settings/password" },
-  { label: "ログアウト", href: "/api/logout", isLogout: true },
+  { label: "ログアウト", href: "/logout" }, // 直接链接
 ];
 
 export default function SidebarNavigationSection() {
@@ -90,54 +90,26 @@ export default function SidebarNavigationSection() {
 
       {/* 底部功能区（保留顶部边框） */}
       <Box sx={{ px: 2, py: 3, borderTop: "1px solid #e0e0e0" }}>
-        {bottomItems.map((item) => {
-          const isLogout = item.isLogout;
-
-          return (
-            <Box key={item.label} sx={{ mb: 1 }}>
-              {isLogout ? (
-                <form
-                  action={item.href}
-                  method="post"
-                  style={{ width: "100%" }}
-                >
-                  <ListItemButton
-                    type="submit"
-                    sx={{
-                      borderRadius: 0,
-                      pl: 2,
-                      py: 1,
-                      color: "inherit",
-                      "&:hover": { bgcolor: "rgba(0, 0, 0, 0.04)" },
-                    }}
-                  >
-                    <ListItemText
-                      primary={item.label}
-                      primaryTypographyProps={{ fontSize: 14, fontWeight: 500 }}
-                    />
-                  </ListItemButton>
-                </form>
-              ) : (
-                <ListItemButton
-                  component={Link}
-                  href={item.href}
-                  sx={{
-                    borderRadius: 0,
-                    pl: 2,
-                    py: 1,
-                    color: "inherit",
-                    "&:hover": { bgcolor: "rgba(0, 0, 0, 0.04)" },
-                  }}
-                >
-                  <ListItemText
-                    primary={item.label}
-                    primaryTypographyProps={{ fontSize: 14, fontWeight: 500 }}
-                  />
-                </ListItemButton>
-              )}
-            </Box>
-          );
-        })}
+        {bottomItems.map((item) => (
+          <Box key={item.label} sx={{ mb: 1 }}>
+            <ListItemButton
+              component={Link}
+              href={item.href}
+              sx={{
+                borderRadius: 0,
+                pl: 2,
+                py: 1,
+                color: "inherit",
+                "&:hover": { bgcolor: "rgba(0, 0, 0, 0.04)" },
+              }}
+            >
+              <ListItemText
+                primary={item.label}
+                primaryTypographyProps={{ fontSize: 14, fontWeight: 500 }}
+              />
+            </ListItemButton>
+          </Box>
+        ))}
       </Box>
     </Box>
   );

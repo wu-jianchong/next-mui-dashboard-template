@@ -14,21 +14,19 @@ import {
   Select,
   MenuItem,
   FormControl,
-  InputLabel,
   Checkbox,
   IconButton,
   Button,
   Stack,
   Pagination,
   InputAdornment,
-  TextField, // ← 已正确导入
+  TextField,
 } from "@mui/material";
 import { Bookmark, BookmarkBorder, Search } from "@mui/icons-material";
 import Link from "next/link";
 import DateInput from "@/components/common/DateInput";
 import dayjs, { Dayjs } from "dayjs";
 
-// 模拟数据（已修复语法错误）
 const mockData = [
   {
     id: 1,
@@ -90,7 +88,6 @@ export default function InformationPage() {
     );
   };
 
-  // 过滤逻辑
   const filteredData = data.filter((row) => {
     if (bookmarkOnly && !row.bookmarked) return false;
     if (category && row.category !== category) return false;
@@ -110,58 +107,109 @@ export default function InformationPage() {
         情報提供
       </Typography>
 
-      {/* 検索フォーム */}
+      {/* 检索栏：三行布局 */}
       <Paper sx={{ p: 3, mb: 3 }}>
         <Stack spacing={3}>
-          {/* 日期区间：使用真实高级 DateInput */}
+          {/* 第1行：掲載日 */}
           <Stack
-            direction={{ xs: "column", sm: "row" }}
+            direction="row"
             spacing={2}
             alignItems="center"
+            flexWrap="wrap"
           >
+            <Typography
+              sx={{ minWidth: 80, fontWeight: "bold", whiteSpace: "nowrap" }}
+            >
+              掲載日
+            </Typography>
             <DateInput
-              label="掲載日（自）"
               value={dateFrom}
               onChange={setDateFrom}
               placeholder="指定なし"
             />
-            <Typography sx={{ mx: 1 }}>～</Typography>
+            <Typography sx={{ mx: 1 }}>～（至）</Typography>
             <DateInput
-              label="掲載日（至）"
               value={dateTo}
               onChange={setDateTo}
               placeholder="指定なし"
             />
           </Stack>
 
-          {/* 其余表单 */}
+          {/* 第2行：カテゴリ + タイトル */}
           <Stack
-            direction={{ xs: "column", md: "row" }}
+            direction="row"
             spacing={2}
             alignItems="center"
+            flexWrap="wrap"
           >
-            <FormControl sx={{ minWidth: 180 }}>
-              <InputLabel>カテゴリ</InputLabel>
+            <Typography
+              sx={{ minWidth: 80, fontWeight: "bold", whiteSpace: "nowrap" }}
+            >
+              カテゴリ
+            </Typography>
+            <FormControl sx={{ minWidth: 200 }}>
               <Select
                 size="small"
                 value={category}
                 onChange={(e) => setCategory(e.target.value)}
+                displayEmpty
               >
-                <MenuItem value="">全て</MenuItem>
+                <MenuItem value="" disabled>
+                  <em>全て</em>
+                </MenuItem>
                 <MenuItem value="提案資料">提案資料</MenuItem>
                 <MenuItem value="各種お知らせ">各種お知らせ</MenuItem>
                 <MenuItem value="レポート">レポート</MenuItem>
               </Select>
             </FormControl>
 
-            <FormControl sx={{ minWidth: 250 }}>
-              <InputLabel>サブカテゴリ</InputLabel>
+            <Typography
+              sx={{
+                minWidth: 80,
+                ml: { xs: 0, sm: 4 },
+                fontWeight: "bold",
+                whiteSpace: "nowrap",
+              }}
+            >
+              タイトル
+            </Typography>
+            <TextField
+              size="small"
+              value={titleKeyword}
+              onChange={(e) => setTitleKeyword(e.target.value)}
+              sx={{ minWidth: 240 }}
+              InputProps={{
+                endAdornment: (
+                  <InputAdornment position="end">
+                    <Search />
+                  </InputAdornment>
+                ),
+              }}
+            />
+          </Stack>
+
+          {/* 第3行：サブカテゴリ + Bookmark */}
+          <Stack
+            direction="row"
+            spacing={2}
+            alignItems="center"
+            flexWrap="wrap"
+          >
+            <Typography
+              sx={{ minWidth: 80, fontWeight: "bold", whiteSpace: "nowrap" }}
+            >
+              サブカテゴリ
+            </Typography>
+            <FormControl sx={{ minWidth: 280 }}>
               <Select
                 size="small"
                 value={subCategory}
                 onChange={(e) => setSubCategory(e.target.value)}
+                displayEmpty
               >
-                <MenuItem value="">全て</MenuItem>
+                <MenuItem value="" disabled>
+                  <em>全て</em>
+                </MenuItem>
                 <MenuItem value="証券代行部大阪証券代行部">
                   証券代行部大阪証券代行部
                 </MenuItem>
@@ -177,20 +225,7 @@ export default function InformationPage() {
               </Select>
             </FormControl>
 
-            <TextField
-              label="タイトル"
-              size="small"
-              value={titleKeyword}
-              onChange={(e) => setTitleKeyword(e.target.value)}
-              sx={{ minWidth: 220 }}
-              InputProps={{
-                endAdornment: (
-                  <InputAdornment position="end">
-                    <Search />
-                  </InputAdornment>
-                ),
-              }}
-            />
+            <Box sx={{ flex: 1 }} />
 
             <Box
               sx={{
@@ -209,6 +244,7 @@ export default function InformationPage() {
             </Box>
           </Stack>
 
+          {/* 搜索按钮 */}
           <Box sx={{ textAlign: "right" }}>
             <Button variant="contained" size="large">
               検索
@@ -217,8 +253,11 @@ export default function InformationPage() {
         </Stack>
       </Paper>
 
-      {/* テーブル */}
-      <TableContainer component={Paper}>
+      {/* テーブル：固定宽度 + 空状态 */}
+      <TableContainer
+        component={Paper}
+        sx={{ minWidth: { xs: "100%", sm: 900 } }}
+      >
         <Table>
           <TableHead>
             <TableRow sx={{ backgroundColor: "#f5f5f5" }}>
@@ -241,46 +280,56 @@ export default function InformationPage() {
             </TableRow>
           </TableHead>
           <TableBody>
-            {filteredData.map((row) => (
-              <TableRow key={row.id} hover>
-                <TableCell>
-                  {row.isNew && (
-                    <Typography color="error" fontWeight="bold">
-                      ★
-                    </Typography>
-                  )}
-                </TableCell>
-                <TableCell>{row.date}</TableCell>
-                <TableCell>{row.category}</TableCell>
-                <TableCell>{row.subCategory}</TableCell>
-                <TableCell>
-                  <Link href={`/information/${row.id}`}>
-                    <Typography
-                      sx={{
-                        color: "primary.main",
-                        textDecoration: "underline",
-                        cursor: "pointer",
-                        "&:hover": { opacity: 0.8 },
-                      }}
-                    >
-                      {row.title}
-                    </Typography>
-                  </Link>
-                </TableCell>
-                <TableCell align="center">
-                  <IconButton
-                    size="small"
-                    onClick={() => handleBookmarkToggle(row.id)}
-                  >
-                    {row.bookmarked ? (
-                      <Bookmark color="primary" />
-                    ) : (
-                      <BookmarkBorder />
-                    )}
-                  </IconButton>
+            {filteredData.length === 0 ? (
+              <TableRow>
+                <TableCell colSpan={6} align="center" sx={{ py: 8 }}>
+                  <Typography variant="body2" color="text.secondary">
+                    該当するデータがありません
+                  </Typography>
                 </TableCell>
               </TableRow>
-            ))}
+            ) : (
+              filteredData.map((row) => (
+                <TableRow key={row.id} hover>
+                  <TableCell>
+                    {row.isNew && (
+                      <Typography color="error" fontWeight="bold">
+                        ★
+                      </Typography>
+                    )}
+                  </TableCell>
+                  <TableCell>{row.date}</TableCell>
+                  <TableCell>{row.category}</TableCell>
+                  <TableCell>{row.subCategory}</TableCell>
+                  <TableCell>
+                    <Link href={`/information/${row.id}`}>
+                      <Typography
+                        sx={{
+                          color: "primary.main",
+                          textDecoration: "underline",
+                          cursor: "pointer",
+                          "&:hover": { opacity: 0.8 },
+                        }}
+                      >
+                        {row.title}
+                      </Typography>
+                    </Link>
+                  </TableCell>
+                  <TableCell align="center">
+                    <IconButton
+                      size="small"
+                      onClick={() => handleBookmarkToggle(row.id)}
+                    >
+                      {row.bookmarked ? (
+                        <Bookmark color="primary" />
+                      ) : (
+                        <BookmarkBorder />
+                      )}
+                    </IconButton>
+                  </TableCell>
+                </TableRow>
+              ))
+            )}
           </TableBody>
         </Table>
       </TableContainer>
