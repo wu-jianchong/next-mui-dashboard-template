@@ -2,7 +2,7 @@
 "use client";
 
 import { Box } from "@mui/material";
-import SeminarSection from "@/components/fs-sm-0001/SeminarSection/SeminarSection";
+import SeminarSection from "@/components/fs-sm/SeminarSection/SeminarSection";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 

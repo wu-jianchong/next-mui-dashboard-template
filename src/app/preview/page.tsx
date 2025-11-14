@@ -3,9 +3,9 @@
 // src/app/test/page.tsx
 import React from "react";
 import { CssBaseline, ThemeProvider, createTheme } from "@mui/material";
-import NotificationSection from "@/components/fs-kt-0001/NotificationSection/NotificationSection";
-import CarouselListSection from "@/components/fs-kt-0001/CarouselListSection/CarouselListSection";
-import NewsFeedSection from "@/components/fs-kt-0001/NewsFeedSection/NewsFeedSection";
+import NotificationSection from "@/components/fs-kt/NotificationSection/NotificationSection";
+import CarouselListSection from "@/components/fs-kt/CarouselListSection/CarouselListSection";
+import NewsFeedSection from "@/components/fs-kt/NewsFeedSection/NewsFeedSection";
 
 // テーマ
 const theme = createTheme({
