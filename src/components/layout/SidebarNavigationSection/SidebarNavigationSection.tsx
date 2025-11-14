@@ -19,6 +19,7 @@ const navigationItems = [
   { label: "セミナー", href: "/seminar" },
   { label: "事務手続き", href: "/admin" },
   { label: "受信BOX", href: "/inbox", badge: 2 },
+  { label: "情報提供", href: "/information" },
 ];
 
 const bottomItems = [
