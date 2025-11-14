@@ -9,7 +9,6 @@ import {
   FormControlLabel,
   Checkbox,
 } from "@mui/material";
-import CalendarTodayIcon from "@mui/icons-material/CalendarToday";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
@@ -137,7 +136,7 @@ export const DateInput = ({
                     flexDirection: "column",
                   }}
                 >
-                  {/* 标题 */}
+                  {/* title */}
                   <Box
                     sx={{
                       display: "flex",
@@ -181,7 +180,7 @@ export const DateInput = ({
                     </IconButton>
                   </Box>
 
-                  {/* 星期行（日文） */}
+                  {/* 曜日 */}
                   <Box sx={{ display: "flex", px: 2 }}>
                     {["日", "月", "火", "水", "木", "金", "土"].map(
                       (label, i) => (
@@ -213,7 +212,6 @@ export const DateInput = ({
                     )}
                   </Box>
 
-                  {/* 日期网格 */}
                   <Box sx={{ flex: 1, p: 1 }}>
                     {weeks.map((week, weekIndex) => (
                       <Box key={weekIndex} sx={{ display: "flex", mb: 0.5 }}>
@@ -277,7 +275,6 @@ export const DateInput = ({
                     ))}
                   </Box>
 
-                  {/* 自定义「指定なし」复选框 */}
                   <Box
                     sx={{
                       display: "flex",
@@ -324,10 +321,8 @@ export const DateInput = ({
             },
           }}
           slotProps={{
-            // 隐藏默认 ActionBar → 去除 “no data”
             actionBar: { hidden: true },
 
-            // 图标颜色：打开时 #1976d2（与选中日期同色）
             openPickerButton: {
               sx: {
                 color: open ? "#1976d2" : "#000000",
