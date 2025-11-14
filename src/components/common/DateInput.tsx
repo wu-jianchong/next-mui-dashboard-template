@@ -2,7 +2,6 @@
 "use client";
 
 import {
-  InputAdornment,
   Stack,
   Typography,
   Box,
@@ -101,14 +100,9 @@ export const DateInput = ({
           slots={{
             day: CustomDay,
             layout: (props) => {
-              const {
-                children,
-                currentMonth = value || dayjs(),
-                onMonthChange,
-                onClear,
-              } = props as any;
+              const { currentMonth = value || dayjs(), onMonthChange } =
+                props as any;
 
-              // 关键：生成完整 7 列日历
               const startOfMonth = currentMonth.startOf("month");
               const endOfMonth = currentMonth.endOf("month");
               const startDate = startOfMonth.startOf("week");
@@ -187,7 +181,7 @@ export const DateInput = ({
                     </IconButton>
                   </Box>
 
-                  {/* 星期行 */}
+                  {/* 星期行（日文） */}
                   <Box sx={{ display: "flex", px: 2 }}>
                     {["日", "月", "火", "水", "木", "金", "土"].map(
                       (label, i) => (
@@ -283,7 +277,7 @@ export const DateInput = ({
                     ))}
                   </Box>
 
-                  {/* 左下角「指定なし」 */}
+                  {/* 自定义「指定なし」复选框 */}
                   <Box
                     sx={{
                       display: "flex",
@@ -330,30 +324,26 @@ export const DateInput = ({
             },
           }}
           slotProps={{
-            layout: {
-              currentMonth: value || dayjs(),
-              onMonthChange: () => {},
+            // 隐藏默认 ActionBar → 去除 “no data”
+            actionBar: { hidden: true },
+
+            // 图标颜色：打开时 #1976d2（与选中日期同色）
+            openPickerButton: {
+              sx: {
+                color: open ? "#1976d2" : "#000000",
+                transition: "color 0.2s ease",
+                fontSize: 20,
+              },
             },
+
             textField: {
               variant: "outlined",
               size: "small",
               placeholder,
               sx: { width: 180 },
-              InputProps: {
-                startAdornment: (
-                  <InputAdornment position="start">
-                    <CalendarTodayIcon
-                      sx={{
-                        fontSize: 20,
-                        color: open ? "#90caf9" : "#000000",
-                        transition: "color 0.2s ease",
-                      }}
-                    />
-                  </InputAdornment>
-                ),
-              },
               onClick: () => setOpen(true),
             },
+
             popper: {
               sx: {
                 "& .MuiPickersPopper-root": {
@@ -361,6 +351,7 @@ export const DateInput = ({
                 },
               },
             },
+
             field: { openPickerButtonPosition: "start" },
           }}
         />
